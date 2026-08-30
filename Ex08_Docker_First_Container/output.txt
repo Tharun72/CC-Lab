@@ -1,0 +1,53 @@
++----------------------------------------------------------------------------------------------------+
+|               EXPERIMENT 08: FIRST DOCKER CONTAINER - OUTPUT & VERIFICATION                         |
++----------------------------------------------------------------------------------------------------+
+
+1. DOCKER IMAGE BUILD STEP LOG
++-------+--------------------+-------------------------------------------+---------------------------+
+| STEP  | INSTRUCTION        | ACTION PERFORMED                          | STATUS                    |
++-------+--------------------+-------------------------------------------+---------------------------+
+| 1/3   | FROM python:latest | Pulled official Python runtime layer      | PULL COMPLETE             |
+| 2/3   | COPY main.py /     | Injected host `main.py` into root `/`     | LAYER CACHED & COPIED     |
+| 3/3   | CMD ["python",..]  | Set entrypoint invocation command         | ENTRYPOINT CONFIGURED     |
+| Build | Tagging Image      | Created image tag: `python-test:latest`   | SUCCESS (ID: 9b8a7c6d5e4f)|
++-------+--------------------+-------------------------------------------+---------------------------+
+
+2. CONTAINER EXECUTION & INSPECTION TABLE
++---------------------------+------------------------------------------------------------------------+
+| PARAMETER                 | INSPECTION RESULT                                                      |
++---------------------------+------------------------------------------------------------------------+
+| Command Executed          | $ docker run python-test                                               |
+| Standard Output (stdout)  | Docker is magic!                                                       |
+| Container Exit Code       | 0 (Clean Normal Exit)                                                  |
+| Image Repository & Tag    | python-test:latest                                                     |
+| Image Virtual Size        | 920 MB (Full Python standard libraries included)                       |
++---------------------------+------------------------------------------------------------------------+
+
+3. CLI TRACE
++----------------------------------------------------------------------------------------------------+
+| $ docker build -t python-test .                                                                    |
+| Sending build context to Docker daemon  3.072kB                                                    |
+| Step 1/3 : FROM python:latest                                                                      |
+|  ---> a1b2c3d4e5f6                                                                                 |
+| Step 2/3 : COPY main.py /                                                                          |
+|  ---> 7a8b9c0d1e2f                                                                                 |
+| Step 3/3 : CMD [ "python", "./main.py" ]                                                           |
+|  ---> Running in 8f7e6d5c4b3a                                                                      |
+| Removing intermediate container 8f7e6d5c4b3a                                                       |
+|  ---> 9b8a7c6d5e4f                                                                                 |
+| Successfully built 9b8a7c6d5e4f                                                                    |
+| Successfully tagged python-test:latest                                                             |
+|                                                                                                    |
+| $ docker run python-test                                                                           |
+| Docker is magic!                                                                                   |
+|                                                                                                    |
+| $ docker ps -a                                                                                     |
+| CONTAINER ID   IMAGE         COMMAND              CREATED          STATUS                     PORTS    |
+| 4e3d2c1b0a9f   python-test   "python ./main.py"   15 seconds ago   Exited (0) 14 seconds ago           |
++----------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| RESULT:                                                                                            |
+| Docker was verified, and a custom Dockerfile packaging a Python script was constructed, built, and |
+| executed into a container successfully displaying the expected output message.                     |
++----------------------------------------------------------------------------------------------------+

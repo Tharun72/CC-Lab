@@ -1,0 +1,46 @@
++----------------------------------------------------------------------------------------------------+
+|                         EXPERIMENT 01: VIRTUAL WORKSTATION - OUTPUT & VERIFICATION                  |
++----------------------------------------------------------------------------------------------------+
+
+1. HOST INSTALLATION STATUS
++------------------------------------+----------------------------------+----------------------------+
+| COMPONENT NAME                     | INSTALLATION TARGET              | STATUS                     |
++------------------------------------+----------------------------------+----------------------------+
+| Oracle VM VirtualBox Application   | C:\Program Files\Oracle\VBox     | INSTALLED (Version 7.0.14) |
+| VirtualBox USB 2.0 / 3.0 Support   | System Device Drivers            | CONFIGURED & READY         |
+| VirtualBox Bridged & NAT Network   | Host Network Virtual Filter      | OPERATIONAL                |
+| VirtualBox Python Integration      | API Runtime Bindings             | INITIALIZED                |
++------------------------------------+----------------------------------+----------------------------+
+
+2. VIRTUAL MACHINE SPECIFICATION SUMMARY
++---------------------------+------------------------------------------------------------------------+
+| PARAMETER                 | CONFIGURED VALUE                                                       |
++---------------------------+------------------------------------------------------------------------+
+| Virtual Machine Name      | Windows 98SE                                                           |
+| Guest OS Platform         | Microsoft Windows 98 Second Edition (32-bit)                           |
+| Base Memory (RAM)         | 512 MB                                                                 |
+| Virtual Processors (vCPU) | 1 CPU (Execution Cap: 100%)                                            |
+| Video Memory              | 14 MB (VBoxVGA Graphics Controller)                                    |
+| Virtual Disk Drive (VDI)  | 2.00 GB (Dynamic Allocation, FAT32 Formatted)                          |
+| Optical Drive (ISO)       | Windows 98 Second Edition.iso (625.22 MB Mounted)                      |
+| Network Adapter 1         | Intel PRO/1000 MT Desktop (Mode: NAT)                                  |
+| VM Current State          | Powered On / Running                                                   |
++---------------------------+------------------------------------------------------------------------+
+
+3. GUEST OS BOOT & VERIFICATION LOG
++-----------------------+------------------------------------------------------+---------------------+
+| PHASE                 | OBSERVED SYSTEM EVENT                                | RESULT STATUS       |
++-----------------------+------------------------------------------------------+---------------------+
+| ISO Boot Stage        | Boot from IDE Secondary Master (CD-ROM) initiated    | PASSED              |
+| Partitioning          | FDISK virtual partition created (2.00 GB)            | PASSED              |
+| File Formatting       | Virtual Drive C: formatted with FAT32 file system    | PASSED              |
+| Setup Wizard          | Windows 98 base system files unpacked & installed    | PASSED              |
+| Hardware Detection    | Virtual display, mouse, keyboard drivers registered  | PASSED              |
+| Desktop Environment   | GUI loaded: My Computer, Network, Recycle Bin active | PASSED              |
++-----------------------+------------------------------------------------------+---------------------+
+
++----------------------------------------------------------------------------------------------------+
+| RESULT:                                                                                            |
+| VirtualBox installation on Windows Host machine and configuration of the Guest Operating System   |
+| (Windows 98) in a virtual workstation environment were executed and verified successfully.         |
++----------------------------------------------------------------------------------------------------+

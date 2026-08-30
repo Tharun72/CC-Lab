@@ -1,0 +1,58 @@
++----------------------------------------------------------------------------------------------------+
+|                       EXPERIMENT 05: CLOUDSIM SIMULATION - OUTPUT & VERIFICATION                   |
++----------------------------------------------------------------------------------------------------+
+
+1. SIMULATION EXECUTION TIMELINE & LOGS
++-------+-------------------------+------------------------------------------------------------------+
+| CLOCK | ENTITY                  | SIMULATED CLOUD ACTION                                           |
++-------+-------------------------+------------------------------------------------------------------+
+| 0.0   | Datacenter_0            | Datacenter initialized with Host #0                              |
+| 0.0   | Broker_0                | Broker received resource list: 1 Datacenter available            |
+| 0.0   | Broker_0 -> Datacenter  | Requesting VM #0 creation on Datacenter_0                        |
+| 0.1   | Datacenter_0            | VM #0 successfully allocated on Datacenter #2, Host #0           |
+| 0.1   | Broker_0 -> VM #0       | Submitting Cloudlet #0 for execution                             |
+| 400.1 | VM #0 -> Broker_0       | Cloudlet #0 execution completed successfully                     |
+| 400.1 | Broker_0                | Destroying VM #0 and releasing resources                         |
+| 400.1 | CloudInformationService | Shutting down entities and finalizing metrics                    |
++-------+-------------------------+------------------------------------------------------------------+
+
+2. SIMULATION METRICS RESULTS TABLE
++-------------+----------+----------------+---------+------------+------------+-------------+
+| CLOUDLET ID | STATUS   | DATA CENTER ID | VM ID   | TIME (s)   | START TIME | FINISH TIME |
++-------------+----------+----------------+---------+------------+------------+-------------+
+| 0           | SUCCESS  | 2              | 0       | 400.00     | 0.10       | 400.10      |
++-------------+----------+----------------+---------+------------+------------+-------------+
+
+3. RAW CONSOLE OUTPUT TRACE
++----------------------------------------------------------------------------------------------------+
+| Starting CloudSimExample1...                                                                       |
+| Initializing...                                                                                    |
+| Starting CloudSim version 3.0                                                                      |
+| Datacenter_0 is starting...                                                                        |
+| Broker is starting...                                                                              |
+| Entities started.                                                                                  |
+| 0.0: Broker: Cloud Resource List received with 1 resource(s)                                       |
+| 0.0: Broker: Trying to Create VM #0 in Datacenter_0                                                |
+| 0.1: Broker: VM #0 has been created in Datacenter #2, host #0                                      |
+| 0.1: Broker: Sending cloudlet 0 to VM #0                                                           |
+| 400.1: Broker: Cloudlet 0 received                                                                 |
+| 400.1: Broker: All Cloudlets executed. Finishing...                                                |
+| 400.1: Broker: Destroying VM #0                                                                    |
+| Broker is shutting down...                                                                         |
+| Simulation: No more future events                                                                  |
+| CloudInformationService: Notify all CloudSim entities for shutting down.                          |
+| Datacenter_0 is shutting down...                                                                   |
+| Broker is shutting down...                                                                         |
+| Simulation completed.                                                                              |
+|                                                                                                    |
+| ========== OUTPUT ==========                                                                       |
+| Cloudlet ID    STATUS     Data center ID    VM ID    Time    Start Time    Finish Time             |
+|      0         SUCCESS          2             0      400        0.1           400.1                |
+| CloudSimExample1 finished!                                                                         |
++----------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| RESULT:                                                                                            |
+| The cloud computing simulation was successfully configured and executed using CloudSim in Eclipse  |
+| IDE, demonstrating datacenter initialization, VM allocation, and cloudlet task scheduling.         |
++----------------------------------------------------------------------------------------------------+

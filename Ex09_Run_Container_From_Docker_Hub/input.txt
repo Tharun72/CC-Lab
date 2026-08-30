@@ -1,0 +1,42 @@
++----------------------------------------------------------------------------------------------------+
+|                         EXPERIMENT 09: RUN A CONTAINER FROM DOCKER HUB                             |
++----------------------------------------------------------------------------------------------------+
+
++-----------------------+----------------------------------------------------------------------------+
+| SECTION               | DETAILS / PREREQUISITES                                                    |
++-----------------------+----------------------------------------------------------------------------+
+| Container Engine      | Docker Engine (v19.03+ / Latest) / Docker Desktop                          |
+| Registry Access       | Active Internet Connection to Docker Hub (registry.hub.docker.com)         |
+| Images Used           | `ubuntu:latest`, `nginx:latest`, `mongo:4.4`                               |
+| Port Allocations      | Host Port 8080 -> Nginx Port 80 \| Host Port 8081 -> Mongo Port 27017      |
++-----------------------+----------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+|                                      STEP-BY-STEP INSTRUCTIONS                                     |
++----------------------------------------------------------------------------------------------------+
+
++------+----------------------------+-------------------------------------+--------------------------+
+| STEP | PHASE / ACTION             | COMMAND                             | DESCRIPTION              |
++------+----------------------------+-------------------------------------+--------------------------+
+| 01   | Verify Docker CLI          | $ docker version && docker --help   | Confirm runtime status   |
+| 02   | Run Ubuntu `top` Container | $ docker container run -it ubuntu tp| Interactive TTY monitor  |
+| 03   | List Running Containers    | $ docker container ls               | Locate container ID/name |
+| 04   | Exec Bash into Container   | $ docker container exec -it <id> bsh| Enter container shell    |
+| 05   | Inspect Running Processes  | root@container:/# ps -ef            | Check isolated processes |
+| 06   | Run Detached Nginx Server  | $ docker run -d -p 8080:80 nginx    | Web server container     |
+| 07   | Test Nginx Endpoint        | $ curl http://localhost:8080        | Fetch HTTP welcome page  |
+| 08   | Run MongoDB Server         | $ docker run -d -p 8081:27017 mongo | Database container (4.4) |
+| 09   | Test MongoDB Port          | $ curl http://localhost:8081        | Check driver HTTP socket |
+| 10   | Stop Containers            | $ docker container stop <ids...>    | Graceful shutdown        |
+| 11   | Clean Up Resources         | $ docker system prune -f            | Reclaim disk space       |
++------+----------------------------+-------------------------------------+--------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| DOCKER HUB CONTAINER DEPLOYMENT MAPPINGS                                                           |
++----------------------+--------------------+---------------------+------------------+---------------+
+| CONTAINER NAME       | DOCKER HUB IMAGE   | HOST:CONTAINER PORT | RUN MODE         | PURPOSE       |
++----------------------+--------------------+---------------------+------------------+---------------+
+| my-ubuntu-top        | ubuntu:latest      | N/A (TTY attached)  | Interactive (-it)| OS Top Tool   |
+| nginx                | nginx:latest       | 8080:80 (TCP)       | Detached (-d)    | Web Server    |
+| mongo                | mongo:4.4          | 8081:27017 (TCP)    | Detached (-d)    | NoSQL DB      |
++----------------------+--------------------+---------------------+------------------+---------------+

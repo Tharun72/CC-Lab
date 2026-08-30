@@ -1,0 +1,56 @@
++----------------------------------------------------------------------------------------------------+
+|                  EXPERIMENT 02: VIRTUAL MACHINE - C COMPILER - OUTPUT & VERIFICATION               |
++----------------------------------------------------------------------------------------------------+
+
+1. PACKAGE DOWNLOAD & INSTALLATION MATRIX
++----------------------+--------------------+--------------------+--------------------+--------------+
+| PACKAGE NAME         | DOWNLOAD SIZE      | DEPENDENCY STATUS  | REPOSITORY SERVER  | RESULT       |
++----------------------+--------------------+--------------------+--------------------+--------------+
+| diffutils.tcz        | 128 KB             | None               | ftp.cc.uoc.gr      | INSTALLED OK |
+| gettext.tcz          | 1516 KB            | libintl            | ftp.cc.uoc.gr      | INSTALLED OK |
+| bison.tcz            | 472 KB             | m4                 | ftp.cc.uoc.gr      | INSTALLED OK |
+| compiletc.tcz (Meta) | 4096 B             | gcc, glibc, make   | ftp.cc.uoc.gr      | INSTALLED OK |
++----------------------+--------------------+--------------------+--------------------+--------------+
+
+2. TERMINAL LOG FOR PACKAGE INSTALLATION
++----------------------------------------------------------------------------------------------------+
+| tc@box:~$ tce-load -wi compiletc                                                                   |
+| Connecting to ftp.cc.uoc.gr (147.52.159.12:80)                                                     |
+| diffutils.tcz        100% |*******************************|  128k  0:00:00 ETA                     |
+| diffutils.tcz: OK                                                                                  |
+| gettext.tcz          100% |*******************************| 1516k  0:00:00 ETA                     |
+| gettext.tcz: OK                                                                                    |
+| bison.tcz            100% |*******************************|  472k  0:00:00 ETA                     |
+| bison.tcz: OK                                                                                      |
+| compiletc.tcz        100% |*******************************| 4096   0:00:00 ETA                     |
+| compiletc.tcz: OK                                                                                  |
+| tc@box:~$                                                                                          |
++----------------------------------------------------------------------------------------------------+
+
+3. PROGRAM COMPILATION & EXECUTION TEST TABLE
++----------+-------------------+-----------------------------+-----------------------+---------------+
+| RUN NO.  | INPUT YEAR        | EXPECTED RESULT             | CONSOLE OUTPUT        | STATUS        |
++----------+-------------------+-----------------------------+-----------------------+---------------+
+| Test 01  | 1991              | 1991 is not a Leap Year     | 1991 is not a Leap... | PASSED        |
+| Test 02  | 2024              | 2024 is a Leap Year         | 2024 is a Leap Year   | PASSED        |
+| Test 03  | 2000              | 2000 is a Leap Year         | 2000 is a Leap Year   | PASSED        |
++----------+-------------------+-----------------------------+-----------------------+---------------+
+
+4. CONSOLE EXECUTION TRACE
++----------------------------------------------------------------------------------------------------+
+| tc@box:~$ sudo editor demo.c                                                                       |
+| tc@box:~$ cc demo.c                                                                                |
+| tc@box:~$ ./a.out                                                                                  |
+| Enter the Year: 1991                                                                               |
+| 1991 is not a Leap Year                                                                            |
+| tc@box:~$ ./a.out                                                                                  |
+| Enter the Year: 2024                                                                               |
+| 2024 is a Leap Year                                                                                |
+| tc@box:~$                                                                                          |
++----------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| RESULT:                                                                                            |
+| The C compiler (GCC/compiletc toolchain) was successfully installed in the Virtual Machine         |
+| environment and simple C programs were compiled and executed with accurate results.                |
++----------------------------------------------------------------------------------------------------+

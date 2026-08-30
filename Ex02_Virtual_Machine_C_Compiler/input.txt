@@ -1,0 +1,58 @@
++----------------------------------------------------------------------------------------------------+
+|                                EXPERIMENT 02: VIRTUAL MACHINE - C COMPILER                          |
++----------------------------------------------------------------------------------------------------+
+
++-----------------------+----------------------------------------------------------------------------+
+| SECTION               | DETAILS / PREREQUISITES                                                    |
++-----------------------+----------------------------------------------------------------------------+
+| Virtual Machine OS    | TinyCore Linux / CorePlus (or Ubuntu/Debian Linux VM)                      |
+| Hypervisor            | Oracle VM VirtualBox / VMware Workstation                                  |
+| Package Repository    | Active Internet access in Guest OS for downloading packages via `tce-load` |
+| Text Editor           | TinyCore Default GUI Editor (`editor`) / Nano / Vi                         |
++-----------------------+----------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+|                                      STEP-BY-STEP INSTRUCTIONS                                     |
++----------------------------------------------------------------------------------------------------+
+
++------+----------------------------+-----------------------------------+----------------------------+
+| STEP | OPERATION                  | COMMAND / ACTION                  | DESCRIPTION                |
++------+----------------------------+-----------------------------------+----------------------------+
+| 01   | Power on Virtual Machine   | Launch VM via VirtualBox / VMware | Boot into CorePlus Desktop |
+| 02   | Open Guest Terminal        | Click Terminal App icon on dock   | Access shell prompt        |
+| 03   | Install C Compiler Suite   | $ tce-load -wi compiletc          | Downloads GCC, libc, bison |
+| 04   | Open Text Editor           | $ sudo editor demo.c              | Create/edit C source file  |
+| 05   | Enter C Source Code        | Type code block shown below       | Leap year evaluation logic |
+| 06   | Save and Exit Editor       | Press 'CTRL + Q'                  | Return back to terminal    |
+| 07   | Compile Source Code        | $ cc demo.c                       | Generates `a.out` binary   |
+| 08   | Execute Binary Program     | $ ./a.out                         | Run and test program       |
++------+----------------------------+-----------------------------------+----------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| C SOURCE CODE (demo.c)                                                                             |
++----------------------------------------------------------------------------------------------------+
+#include <stdio.h>
+
+int main()
+{
+    int y;
+    printf("Enter the Year: ");
+    scanf("%d", &y);
+    if (y % 4 == 0)
+    {
+        if (y % 100 == 0)
+        {
+            if (y % 400 == 0)
+                printf("%d is a Leap Year\n", y);
+            else
+                printf("%d is not Leap Year\n", y);
+        }
+        else
+            printf("%d is a Leap Year\n", y);
+    }
+    else
+        printf("%d is not Leap Year\n", y);
+        
+    return 0;
+}
++----------------------------------------------------------------------------------------------------+

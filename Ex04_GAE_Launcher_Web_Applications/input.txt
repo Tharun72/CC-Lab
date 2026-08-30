@@ -1,0 +1,62 @@
++----------------------------------------------------------------------------------------------------+
+|                         EXPERIMENT 04: USE GAE LAUNCHER TO LAUNCH WEB APPLICATIONS                 |
++----------------------------------------------------------------------------------------------------+
+
++-----------------------+----------------------------------------------------------------------------+
+| SECTION               | DETAILS / PREREQUISITES                                                    |
++-----------------------+----------------------------------------------------------------------------+
+| CLI Tool / Launcher   | Google Cloud SDK (`gcloud` CLI) / GAE Launcher GUI                         |
+| Execution Runtime     | Python 2.7 / Python 3.x Standard Environment                               |
+| Project Prerequisites | Active GCP Project ID (e.g., `my-gae-project`)                             |
+| Directory Structure   | Root folder with `app.yaml` and `www/` static directory                    |
++-----------------------+----------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+|                                      STEP-BY-STEP INSTRUCTIONS                                     |
++----------------------------------------------------------------------------------------------------+
+
++------+----------------------------+-------------------------------------+--------------------------+
+| STEP | ACTION                     | COMMAND / DIRECTIVE                 | DESCRIPTION              |
++------+----------------------------+-------------------------------------+--------------------------+
+| 01   | Project Initialization     | $ gcloud init                       | Authenticate & set proj  |
+| 02   | Create Workspace Folders   | $ mkdir -p my-gae-app/www/css       | Setup directory layout   |
+| 03   | Configure `app.yaml`       | Add handler mappings to `app.yaml`  | Route URL paths to files |
+| 04   | Create Static HTML Page    | Save HTML file as `www/index.html`  | Web application markup   |
+| 05   | Create Stylesheet          | Save CSS file as `www/css/style.css`| Appearance styling       |
+| 06   | Local Preview Execution    | $ dev_appserver.py app.yaml         | Run local test server    |
+| 07   | Deploy to Google App Engine| $ gcloud app deploy --project [ID]  | Upload & deploy code     |
+| 08   | Launch App in Browser      | $ gcloud app browse                 | Opens production URL     |
++------+----------------------------+-------------------------------------+--------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| GAE CONFIGURATION: app.yaml                                                                        |
++----------------------------------------------------------------------------------------------------+
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /
+  static_files: www/index.html
+  upload: www/index.html
+
+- url: /(.*)
+  static_files: www/\1
+  upload: www/(.*)
++----------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| WEB ASSET: www/index.html                                                                          |
++----------------------------------------------------------------------------------------------------+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello, world!</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
+<body>
+    <h1>Hello, world!</h1>
+    <p>This is a simple static HTML file that will be served from Google App Engine.</p>
+</body>
+</html>
++----------------------------------------------------------------------------------------------------+

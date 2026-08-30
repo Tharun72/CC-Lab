@@ -1,0 +1,55 @@
++----------------------------------------------------------------------------------------------------+
+|                       EXPERIMENT 04: USE GAE LAUNCHER - OUTPUT & VERIFICATION                      |
++----------------------------------------------------------------------------------------------------+
+
+1. DEPLOYMENT CONFIGURATION & STATUS TABLE
++---------------------------+------------------------------------------------------------------------+
+| CONFIGURATION PARAMETER   | STATUS / VALUE                                                         |
++---------------------------+------------------------------------------------------------------------+
+| Deployment Target Project | my-gae-project                                                         |
+| Service Name              | default                                                                |
+| Version ID                | v1                                                                     |
+| Runtime Environment       | Python 2.7 Standard                                                    |
+| Traffic Allocation        | 100.0% to Version v1                                                   |
+| Deployed Endpoint URL     | https://my-gae-project.uc.r.appspot.com                                |
+| HTTP Verification         | 200 OK (Content-Type: text/html)                                       |
++---------------------------+------------------------------------------------------------------------+
+
+2. CLI DEPLOYMENT & LAUNCH LOG
++----------------------------------------------------------------------------------------------------+
+| $ gcloud app deploy --project my-gae-project -v v1                                                 |
+| Services to deploy:                                                                                |
+| descriptor:      [C:\workspace\my-gae-project\app.yaml]                                            |
+| source:          [C:\workspace\my-gae-project]                                                     |
+| target project:  [my-gae-project]                                                                  |
+| target service:  [default]                                                                         |
+| target version:  [v1]                                                                              |
+| target url:      [https://my-gae-project.uc.r.appspot.com]                                         |
+|                                                                                                    |
+| Do you want to continue (Y/n)? Y                                                                   |
+| Beginning deployment of service [default]...                                                       |
+| Uploading 3 files to Google Cloud Storage...                                                       |
+| File upload done.                                                                                  |
+| Updating service [default]...                                                                      |
+| Setting traffic split 100.0% to version [v1]...                                                    |
+| Deployed service [default] to [https://my-gae-project.uc.r.appspot.com]                            |
+|                                                                                                    |
+| $ gcloud app browse                                                                                |
+| Opening [https://my-gae-project.uc.r.appspot.com] in default browser.                              |
++----------------------------------------------------------------------------------------------------+
+
+3. BROWSER OUTPUT DISPLAY
++----------------------------------------------------------------------------------------------------+
+| URL: https://my-gae-project.uc.r.appspot.com/                                                      |
+| +------------------------------------------------------------------------------------------------+ |
+| | Hello, world!                                                                                  | |
+| |                                                                                                | |
+| | This is a simple static HTML file that will be served from Google App Engine.                  | |
+| +------------------------------------------------------------------------------------------------+ |
++----------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| RESULT:                                                                                            |
+| The GAE launcher and Google Cloud SDK tools were used to configure, deploy, and launch the web     |
+| application successfully on Google App Engine cloud infrastructure.                                |
++----------------------------------------------------------------------------------------------------+

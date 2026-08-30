@@ -1,0 +1,47 @@
++----------------------------------------------------------------------------------------------------+
+|                  EXPERIMENT 03: GOOGLE APP ENGINE - HELLO WORLD - OUTPUT & VERIFICATION            |
++----------------------------------------------------------------------------------------------------+
+
+1. LOCAL DEVELOPMENT SERVER STATUS
++-----------------------------------+-----------------------------------+----------------------------+
+| SERVICE / ENDPOINT                | LOCAL URL ADDRESS                 | STATUS / RESPONSE          |
++-----------------------------------+-----------------------------------+----------------------------+
+| GAE Embedded Web Server           | http://localhost:8888/            | 200 OK (Index HTML Active) |
+| Hello World Servlet               | http://localhost:8888/helloworld  | 200 OK ("Hello, world")    |
+| GAE Local Admin Console           | http://localhost:8888/_ah/admin   | OPERATIONAL                |
++-----------------------------------+-----------------------------------+----------------------------+
+
+2. ECLIPSE CONSOLE SERVER TRACE
++----------------------------------------------------------------------------------------------------+
+| INFO: The server is running at http://localhost:8888/                                              |
+| 30 Mac 2012 11:13:01 PM com.google.appengine.tools.development.DevAppServerImpl start             |
+| INFO: The admin console is running at http://localhost:8888/_ah/admin                             |
+| Dev App Server is now running                                                                      |
++----------------------------------------------------------------------------------------------------+
+
+3. CLOUD DEPLOYMENT VERIFICATION MATRIX
++----------------------+--------------------+------------------------------------+-------------------+
+| ATTRIBUTE            | LOCAL ENVIRONMENT  | GOOGLE CLOUD APP ENGINE PRODUCTION | VERIFICATION      |
++----------------------+--------------------+------------------------------------+-------------------+
+| Application ID       | local-dev-app      | mkyong123                          | MATCHED           |
+| App Version          | 1.0                | 1                                  | DEPLOYED          |
+| Web Endpoint URL     | localhost:8888     | http://mkyong123.appspot.com/      | ACCESSIBLE        |
+| Servlet Output       | Hello, world       | Hello, world                       | PASSED            |
+| HTTP Response Status | HTTP 200 OK        | HTTP 200 OK                        | PASSED            |
++----------------------+--------------------+------------------------------------+-------------------+
+
+4. BROWSER RENDERING VIEW
++----------------------------------------------------------------------------------------------------+
+| URL: http://mkyong123.appspot.com/                                                                 |
+| +------------------------------------------------------------------------------------------------+ |
+| |                                     Hello App Engine!                                          | |
+| | Available Servlets:                                                                            | |
+| | * HelloWorld -> Response: "Hello, world"                                                       | |
+| +------------------------------------------------------------------------------------------------+ |
++----------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| RESULT:                                                                                            |
+| Google App Engine was configured successfully, and a Hello World web application was developed in  |
+| Java, executed on the local development server, and deployed to Google App Engine cloud.           |
++----------------------------------------------------------------------------------------------------+

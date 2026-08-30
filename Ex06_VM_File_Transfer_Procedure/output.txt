@@ -1,0 +1,45 @@
++----------------------------------------------------------------------------------------------------+
+|             EXPERIMENT 06: FILE TRANSFER BETWEEN VIRTUAL MACHINES - OUTPUT & VERIFICATION          |
++----------------------------------------------------------------------------------------------------+
+
+1. FILE TRANSFER METHODS COMPARISON & VERIFICATION MATRIX
++--------+---------------------+-----------------------+---------------------+-----------------------+
+| METHOD | TRANSFER TYPE       | CONFIGURATION USED    | VERIFIED ENDPOINT   | TEST STATUS           |
++--------+---------------------+-----------------------+---------------------+-----------------------+
+| 01     | Drag and Drop       | Bidirectional Mode    | Desktop filesystem  | SUCCESSFUL            |
+| 02     | USB Passthrough     | USB 3.0 xHCI / SanDisk| /media/user/SanDisk | MOUNTED & VERIFIED    |
+| 03     | Shared Folders      | Auto-Mount, Permanent | /media/sf_VM_Share  | READ/WRITE OK         |
+| 04     | Network Transfer    | SCP over Bridged Net  | Port 22 SSH         | 45.2 MB/s TRANSFERRED |
++--------+---------------------+-----------------------+---------------------+-----------------------+
+
+2. VERIFICATION LOGS
+
+A. USB STORAGE DETECTION LOG
++----------------------------------------------------------------------------------------------------+
+| $ lsusb                                                                                            |
+| Bus 001 Device 002: ID 0781:5567 SanDisk Corp. Cruzer Blade                                        |
+| $ sudo fdisk -l | grep sdb                                                                         |
+| Disk /dev/sdb: 14.92 GiB, 16022241280 bytes, 31293440 sectors                                      |
+| /dev/sdb1        2048 31293439 31291392 14.9G  c W95 FAT32 (LBA)                                  |
++----------------------------------------------------------------------------------------------------+
+
+B. SHARED FOLDER MOUNT VERIFICATION
++----------------------------------------------------------------------------------------------------+
+| $ df -h | grep sf_                                                                                 |
+| VM_Share        238G   84G  155G  36% /media/sf_VM_Share                                           |
+| $ echo "Hello from Guest VM" > /media/sf_VM_Share/guest_log.txt                                    |
+| [Host Verification]: File 'C:\VM_Shared_Folder\guest_log.txt' created successfully.                |
++----------------------------------------------------------------------------------------------------+
+
+C. SCP NETWORK TRANSFER PROGRESS
++----------------------------------------------------------------------------------------------------+
+| $ scp report.pdf student@192.168.1.110:/home/student/Documents/                                    |
+| student@192.168.1.110's password:                                                                  |
+| report.pdf                                    100% 4520KB  45.2MB/s   00:00                        |
++----------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| RESULT:                                                                                            |
+| Procedures for transferring files between virtual machines and host-guest systems (Drag-and-Drop,  |
+| Shared Folders, USB passthrough, and SCP) were successfully executed and verified.                 |
++----------------------------------------------------------------------------------------------------+

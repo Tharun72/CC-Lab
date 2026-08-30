@@ -1,0 +1,65 @@
++----------------------------------------------------------------------------------------------------+
+|                         EXPERIMENT 08: CREATING AND EXECUTING FIRST DOCKER CONTAINER               |
++----------------------------------------------------------------------------------------------------+
+
++-----------------------+----------------------------------------------------------------------------+
+| SECTION               | DETAILS / PREREQUISITES                                                    |
++-----------------------+----------------------------------------------------------------------------+
+| Host OS Platform      | Linux (Ubuntu/Debian) / Windows 10/11 with WSL2 / macOS                    |
+| Container Engine      | Docker Engine Community Edition (`docker.io` / Docker Desktop)             |
+| Privileges            | Sudo/root access to execute Docker daemon commands                         |
+| Base Image            | Official Python 3 Image (`python:latest`) from Docker Hub                  |
++-----------------------+----------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+|                                      STEP-BY-STEP INSTRUCTIONS                                     |
++----------------------------------------------------------------------------------------------------+
+
++------+----------------------------+-------------------------------------+--------------------------+
+| STEP | OPERATION / PHASE          | COMMAND                             | DESCRIPTION              |
++------+----------------------------+-------------------------------------+--------------------------+
+| 01   | Update Package Repositories| $ sudo apt update                   | Refresh apt lists        |
+| 02   | Install Docker Engine      | $ sudo apt install -y docker.io     | Install Docker runtime   |
+| 03   | Verify Installation        | $ sudo docker run hello-world       | Run official test image  |
+| 04   | Create Project Directory   | $ mkdir docker-first-container      | Initialize folder        |
+| 05   | Create Python Application  | Create `main.py`                    | Write target Python code |
+| 06   | Create Dockerfile          | Create `Dockerfile`                 | Container build blueprint|
+| 07   | Build Docker Image         | $ docker build -t python-test .     | Package code and runtime |
+| 08   | Run Docker Container       | $ docker run python-test            | Execute custom container |
++------+----------------------------+-------------------------------------+--------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| PROJECT ARCHITECTURE & FILES                                                                       |
++----------------------------------------------------------------------------------------------------+
+docker-first-container/
+├── Dockerfile      (Contains container build instructions)
+└── main.py         (Python script executed inside container)
+
+----------------------------------- main.py -----------------------------------
+#!/usr/bin/env python3
+print("Docker is magic!")
+-------------------------------------------------------------------------------
+
+--------------------------------- Dockerfile ----------------------------------
+# Step 1: Specify the base runtime image from Docker Hub
+FROM python:latest
+
+# Step 2: Copy the local script into the root directory of the container image
+COPY main.py /
+
+# Step 3: Define the startup execution command when the container launches
+CMD [ "python", "./main.py" ]
+-------------------------------------------------------------------------------
+
++----------------------------------------------------------------------------------------------------+
+| DOCKER MANAGEMENT CHEAT SHEET                                                                      |
++----------------------------+-----------------------------------+-----------------------------------+
+| MANAGEMENT ACTION          | COMMAND                           | FUNCTION                          |
++----------------------------+-----------------------------------+-----------------------------------+
+| List Local Images          | $ docker image ls                 | Shows downloaded & built images   |
+| List All Containers        | $ docker ps -a                    | Shows active & stopped containers |
+| View Container Logs        | $ docker logs <container_name>    | Displays terminal output stream   |
+| Stop Container             | $ docker stop <container_name>    | Graceful shutdown of container    |
+| Remove Container           | $ docker rm <container_name>      | Deletes container instance        |
+| Remove Image               | $ docker image rm python-test     | Removes image from local disk     |
++----------------------------+-----------------------------------+-----------------------------------+

@@ -1,0 +1,48 @@
++----------------------------------------------------------------------------------------------------+
+|               EXPERIMENT 09: RUN A CONTAINER FROM DOCKER HUB - OUTPUT & VERIFICATION               |
++----------------------------------------------------------------------------------------------------+
+
+1. RUNNING CONTAINERS OVERVIEW (docker container ls)
++---------------+--------------+----------------------+--------------------+-------------------------+
+| CONTAINER ID  | IMAGE        | COMMAND              | STATUS             | PORT MAPPING            |
++---------------+--------------+----------------------+--------------------+-------------------------+
+| d6777df89fea  | nginx:latest | "nginx -g 'daemon..."| Up 3 minutes       | 0.0.0.0:8080->80/tcp    |
+| ead80a0db505  | mongo:4.4    | "docker-entrypoint..."| Up 3 minutes       | 0.0.0.0:8081->27017/tcp |
+| af549dccd5cf  | ubuntu:latest| "top"                | Up 8 minutes       | TTY / Stdout Attached   |
++---------------+--------------+----------------------+--------------------+-------------------------+
+
+2. SERVICE RESPONSES & ENDPOINT VERIFICATION TABLE
++-------------------+----------------------------+-----------------------+---------------------------+
+| TARGET SERVICE    | QUERY COMMAND              | HTTP / SOCKET STATUS  | OBSERVED OUTPUT           |
++-------------------+----------------------------+-----------------------+---------------------------+
+| Nginx Web Server  | $ curl http://localhost:8080| HTTP 200 OK           | <h1>Welcome to nginx!</h1>|
+| MongoDB Instance  | $ curl http://localhost:8081| Socket Response       | MongoDB driver notice msg |
+| Ubuntu Container  | $ docker exec -it .. bash  | Exec Session          | Isolated process space    |
++-------------------+----------------------------+-----------------------+---------------------------+
+
+3. CLI SESSION SNAPSHOTS
+
+A. UBUNTU CONTAINER PROCESS INSPECTION (ps -ef)
++----------------------------------------------------------------------------------------------------+
+| root@b3ad2a23fab3:/# ps -ef                                                                        |
+| UID        PID  PPID  C STIME TTY          TIME CMD                                                |
+| root         1     0  0 20:34 ?        00:00:00 top                                                |
+| root        17     0  0 21:06 ?        00:00:00 bash                                               |
+| root        27    17  0 21:14 ?        00:00:00 ps -ef                                             |
++----------------------------------------------------------------------------------------------------+
+
+B. DOCKER SYSTEM PRUNE LOG
++----------------------------------------------------------------------------------------------------+
+| $ docker system prune -f                                                                           |
+| Deleted Containers:                                                                                |
+| 7872fd96ea4695795c41150a06067d605f69702dbcb9ce49492c9029f0e1b44b                                  |
+| 60abd5ee65b1e2732ddc02b971a86e22de1c1c446dab165462a08b037ef7835c                                  |
+| 31617fdd8e5f584c51ce182757e24a1c9620257027665c20be75aa3ab6591740                                  |
+| Total reclaimed space: 12B                                                                         |
++----------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| RESULT:                                                                                            |
+| Multiple standard containers from Docker Hub (Ubuntu, Nginx, MongoDB) were pulled, executed in     |
+| interactive and detached modes with port forwards, verified, and cleaned up successfully.          |
++----------------------------------------------------------------------------------------------------+

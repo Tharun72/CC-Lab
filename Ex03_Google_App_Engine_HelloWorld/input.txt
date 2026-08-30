@@ -1,0 +1,60 @@
++----------------------------------------------------------------------------------------------------+
+|                       EXPERIMENT 03: GOOGLE APP ENGINE - HELLO WORLD WEB APPLICATION               |
++----------------------------------------------------------------------------------------------------+
+
++-----------------------+----------------------------------------------------------------------------+
+| SECTION               | DETAILS / PREREQUISITES                                                    |
++-----------------------+----------------------------------------------------------------------------+
+| IDE Environment       | Eclipse IDE for Java EE / Java Developers (3.7+)                           |
+| Plugins & SDKs        | Google Plugin for Eclipse (GPE) & Google App Engine Java SDK               |
+| Cloud Platform        | Google Cloud Console Account & Registered Application ID (e.g., mkyong123) |
+| Runtime Target        | GAE Local DevAppServer (Port 8888) & GAE Cloud Production                  |
++-----------------------+----------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+|                                      STEP-BY-STEP INSTRUCTIONS                                     |
++----------------------------------------------------------------------------------------------------+
+
++------+----------------------------+----------------------------------------------------------------+
+| STEP | ACTION                     | DETAILED PROCEDURE                                             |
++------+----------------------------+----------------------------------------------------------------+
+| 01   | Install GPE & GAE SDK      | Eclipse -> Help -> Install New Software -> Add GPE repository  |
+| 02   | Create GAE Web Project     | Click Google Icon -> New Web Application Project -> Name it    |
+| 03   | Project Settings           | Project: HelloWorld | Package: com.mkyong | Uncheck GWT        |
+| 04   | Verify Directory Structure | Inspect `src/`, `war/WEB-INF/`, `lib/` and descriptor files    |
+| 05   | Edit `appengine-web.xml`   | Define `<application>mkyong123</application>` and `<version>1` |
+| 06   | Create Servlet Code        | Write `HelloWorldServlet.java` under `com.mkyong` package      |
+| 07   | Run Local Development      | Right click project -> Run As -> Web Application (Port 8888)   |
+| 08   | Deploy to Google Cloud     | Click 'Deploy App to GAE' -> Sign in to GCP -> Execute Deploy  |
++------+----------------------------+----------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| PROJECT CONFIGURATION: appengine-web.xml                                                           |
++----------------------------------------------------------------------------------------------------+
+<?xml version="1.0" encoding="utf-8"?>
+<appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+    <application>mkyong123</application>
+    <version>1</version>
+    <system-properties>
+        <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+    </system-properties>
+</appengine-web-app>
++----------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| JAVA SERVLET SOURCE CODE: HelloWorldServlet.java                                                   |
++----------------------------------------------------------------------------------------------------+
+package com.mkyong;
+
+import java.io.IOException;
+import javax.servlet.http.*;
+
+@SuppressWarnings("serial")
+public class HelloWorldServlet extends HttpServlet {
+    public void doGet(HttpServletRequest req, HttpServletResponse resp) 
+            throws IOException {
+        resp.setContentType("text/plain");
+        resp.getWriter().println("Hello, world");
+    }
+}
++----------------------------------------------------------------------------------------------------+

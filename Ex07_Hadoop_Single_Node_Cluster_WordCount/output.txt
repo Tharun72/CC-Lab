@@ -1,0 +1,61 @@
++----------------------------------------------------------------------------------------------------+
+|             EXPERIMENT 07: HADOOP SINGLE NODE CLUSTER & WORDCOUNT - OUTPUT & VERIFICATION          |
++----------------------------------------------------------------------------------------------------+
+
+1. HADOOP CLUSTER DAEMONS STATUS (JPS VERIFICATION)
++----------+--------------------------+---------------------+-------------------+--------------------+
+| PID      | DAEMON PROCESS NAME      | ROLE / SUBSYSTEM    | DEFAULT PORT      | STATUS             |
++----------+--------------------------+---------------------+-------------------+--------------------+
+| 5990     | NameNode                 | HDFS Master         | 50070 / 9000      | ACTIVE & HEALTHY   |
+| 6142     | DataNode                 | HDFS Worker / Block | 50075             | ACTIVE & HEALTHY   |
+| 6334     | SecondaryNameNode        | Checkpoint Manager  | 50090             | ACTIVE & HEALTHY   |
+| 6498     | ResourceManager          | YARN Master         | 8088 / 8032       | ACTIVE & HEALTHY   |
+| 6696     | NodeManager              | YARN Worker         | 8042              | ACTIVE & HEALTHY   |
+| 6927     | Jps                      | JVM Process Lookup  | N/A               | RUNNING            |
++----------+--------------------------+---------------------+-------------------+--------------------+
+
+2. MAPREDUCE WORDCOUNT EXECUTION PROGRESS
++----------------------+--------------------+--------------------+-----------------------------------+
+| EXECUTION PHASE      | MAP COMPLETION     | REDUCE COMPLETION  | STATUS                            |
++----------------------+--------------------+--------------------+-----------------------------------+
+| Job Initialization   | 0%                 | 0%                 | Job submitted to ResourceManager  |
+| Map Phase            | 100%               | 0%                 | Input splits tokenized            |
+| Shuffle & Sort       | 100%               | 50%                | Intermediate keys redistributed   |
+| Reduce Phase         | 100%               | 100%               | Aggregation sum completed         |
+| Job Completion       | 100%               | 100%               | SUCCESS (Exit Code: 0)            |
++----------------------+--------------------+--------------------+-----------------------------------+
+
+3. HDFS WORDCOUNT OUTPUT TABLE
++------------------------------------+---------------------------------------------------------------+
+| WORD TOKEN (KEY)                   | OCCURRENCE FREQUENCY (VALUE)                                  |
++------------------------------------+---------------------------------------------------------------+
+| Bye                                | 1                                                             |
+| Goodbye                            | 1                                                             |
+| Hadoop                             | 2                                                             |
+| Hello                              | 2                                                             |
+| World                              | 2                                                             |
++------------------------------------+---------------------------------------------------------------+
+
+4. TERMINAL EXECUTION TRACE
++----------------------------------------------------------------------------------------------------+
+| $ hadoop jar wc.jar WordCount /user/joe/wordcount/input /user/joe/wordcount/output                 |
+| 16/08/27 09:30:01 INFO client.RMProxy: Connecting to ResourceManager at /0.0.0.0:8032              |
+| 16/08/27 09:30:02 INFO mapreduce.JobSubmitter: number of splits:1                                  |
+| 16/08/27 09:30:03 INFO mapreduce.Job: Running job: job_1466419200000_0001                          |
+| 16/08/27 09:30:18 INFO mapreduce.Job:  map 100% reduce 0%                                          |
+| 16/08/27 09:30:26 INFO mapreduce.Job:  map 100% reduce 100%                                        |
+| 16/08/27 09:30:27 INFO mapreduce.Job: Job job_1466419200000_0001 completed successfully          |
+|                                                                                                    |
+| $ hadoop fs -cat /user/joe/wordcount/output/part-r-00000                                           |
+| Bye      1                                                                                         |
+| Goodbye  1                                                                                         |
+| Hadoop   2                                                                                         |
+| Hello    2                                                                                         |
+| World    2                                                                                         |
++----------------------------------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| RESULT:                                                                                            |
+| The single-node Apache Hadoop cluster was successfully set up, HDFS and YARN daemons were verified |
+| via JPS/Web UI, and the MapReduce WordCount program was executed over HDFS with correct output.   |
++----------------------------------------------------------------------------------------------------+

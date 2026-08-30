@@ -1,0 +1,41 @@
++----------------------------------------------------------------------------------------------------+
+|                                EXPERIMENT 05: CLOUD SIMULATION USING CLOUDSIM                       |
++----------------------------------------------------------------------------------------------------+
+
++-----------------------+----------------------------------------------------------------------------+
+| SECTION               | DETAILS / PREREQUISITES                                                    |
++-----------------------+----------------------------------------------------------------------------+
+| Java Environment      | Java Development Kit (JDK 1.7 / JDK 1.8 or later)                          |
+| IDE Platform          | Eclipse IDE for Java Developers (Kepler / Neon / 2020+)                    |
+| CloudSim Toolkit      | CloudSim 3.0.3 Source Code Package (https://github.com/Cloudslab/cloudsim) |
+| Required Dependencies | Apache Commons Math library (commons-math3-3.6.1.jar)                      |
++-----------------------+----------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+|                                      STEP-BY-STEP INSTRUCTIONS                                     |
++----------------------------------------------------------------------------------------------------+
+
++------+----------------------------+----------------------------------------------------------------+
+| STEP | OPERATION                  | DESCRIPTION / ACTION                                           |
++------+----------------------------+----------------------------------------------------------------+
+| 01   | Extract Archives           | Unzip Eclipse, CloudSim 3.0.3, and Apache Commons Math 3.6.1   |
+| 02   | Launch Eclipse             | Open `eclipse.exe` and specify workspace path                  |
+| 03   | New Java Project           | File -> New -> Java Project -> Name: "CloudSim"                |
+| 04   | Link Source Directory      | Uncheck default location -> Browse to `cloudsim-3.0.3` root    |
+| 05   | Configure Build Path       | Java Settings -> Libraries Tab -> Click "Add External JARs..." |
+| 06   | Add Commons Math Library   | Select and add `commons-math3-3.6.1.jar` to Build Path         |
+| 07   | Open Simulation Example    | Expand `org.cloudbus.cloudsim.examples` -> `CloudSimExample1`  |
+| 08   | Execute Simulation         | Right click -> Run As -> Java Application (or Ctrl + F11)      |
++------+----------------------------+----------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+| CLOUDSIM SIMULATION ENTITY CONFIGURATION MATRIX                                                    |
++----------------------+--------------------+--------------------------------------------------------+
+| ENTITY COMPONENT     | INSTANCE IDENTIFIER| ALLOCATED SPECIFICATION / CAPACITY                     |
++----------------------+--------------------+--------------------------------------------------------+
+| Datacenter           | Datacenter_0       | 1 Host, 2048 MB RAM, 10000 MB Storage, 10000 Mbps BW   |
+| Host Machine         | Host #0            | 1 Core @ 1000 MIPS, Time-Shared VM Scheduler           |
+| Datacenter Broker    | Broker_0           | Mediates Cloudlet scheduling and VM provisioning       |
+| Virtual Machine      | VM #0              | 1 vCPU @ 1000 MIPS, 512 MB RAM, 1000 Mbps BW, 10 GB HD |
+| Cloudlet (Job Task)  | Cloudlet #0        | Length: 400,000 MI, File Size: 300, Output Size: 300   |
++----------------------+--------------------+--------------------------------------------------------+

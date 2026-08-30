@@ -1,0 +1,40 @@
++----------------------------------------------------------------------------------------------------+
+|                         EXPERIMENT 06: FILE TRANSFER BETWEEN VIRTUAL MACHINES                      |
++----------------------------------------------------------------------------------------------------+
+
++-----------------------+----------------------------------------------------------------------------+
+| SECTION               | DETAILS / PREREQUISITES                                                    |
++-----------------------+----------------------------------------------------------------------------+
+| Hypervisor            | Oracle VM VirtualBox / VMware Workstation                                  |
+| Virtual Machines      | Host OS + At least one/two active Guest VMs (Linux / Windows)              |
+| Required Packages     | VirtualBox Extension Pack & VirtualBox Guest Additions ISO                 |
+| Networking Mode       | Bridged Networking / Internal Network (for SSH/SCP methods)                 |
++-----------------------+----------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+|                                      STEP-BY-STEP INSTRUCTIONS                                     |
++----------------------------------------------------------------------------------------------------+
+
++--------+------------------------+------------------------------------------------------------------+
+| METHOD | TRANSFER MECHANISM     | STEP-BY-STEP PROCEDURE                                           |
++--------+------------------------+------------------------------------------------------------------+
+| 01     | Shared Clipboard &     | 1. Open VM window -> Devices menu.                               |
+|        | Drag-and-Drop          | 2. Set 'Drag and Drop' -> 'Bidirectional'.                       |
+|        |                        | 3. Set 'Shared Clipboard' -> 'Bidirectional'.                    |
+|        |                        | 4. Drag files directly across Host and Guest desktop windows.    |
++--------+------------------------+------------------------------------------------------------------+
+| 02     | USB Storage Device     | 1. Download matching VirtualBox Extension Pack.                  |
+|        | Passthrough            | 2. VirtualBox -> File -> Preferences -> Extensions -> Install.   |
+|        |                        | 3. VM Settings -> USB -> Enable USB 3.0 (xHCI) Controller.       |
+|        |                        | 4. Add USB Device filter -> Start VM -> Access USB in Guest.     |
++--------+------------------------+------------------------------------------------------------------+
+| 03     | VirtualBox Shared      | 1. Install Guest Additions inside Guest OS.                      |
+|        | Folders (Recommended)  | 2. Create folder on Host (e.g., C:\VM_Shared_Folder).            |
+|        |                        | 3. Devices -> Shared Folders -> Add Share ('+').                 |
+|        |                        | 4. Select Host Path, Check 'Auto-mount' & 'Make Permanent'.      |
+|        |                        | 5. Folder auto-mounts at `/media/sf_<name>` (Linux) / Network.   |
++--------+------------------------+------------------------------------------------------------------+
+| 04     | Secure Copy Protocol   | 1. Configure network adapter to 'Bridged Adapter'.               |
+|        | (SCP over Network)     | 2. Obtain Destination VM IP via `ifconfig` or `ip a`.            |
+|        |                        | 3. Run: $ scp /path/to/file user@<Destination_IP>:/target/dir/   |
++--------+------------------------+------------------------------------------------------------------+

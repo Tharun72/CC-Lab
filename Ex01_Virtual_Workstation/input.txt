@@ -1,0 +1,45 @@
++----------------------------------------------------------------------------------------------------+
+|                                  EXPERIMENT 01: VIRTUAL WORKSTATION                                 |
++----------------------------------------------------------------------------------------------------+
+
++-----------------------+----------------------------------------------------------------------------+
+| SECTION               | DETAILS / PREREQUISITES                                                    |
++-----------------------+----------------------------------------------------------------------------+
+| Host Operating System | Windows 8 / 8.1 / 10 / 11 (64-bit Architecture)                            |
+| Minimum Hardware      | Multi-core CPU (Intel VT-x / AMD-V enabled), 4 GB RAM, 20 GB Disk Free     |
+| Software Required     | Oracle VM VirtualBox 7.x Setup Executable                                  |
+| Guest OS Media        | Windows 98 SE ISO / Linux Distribution ISO Image                           |
++-----------------------+----------------------------------------------------------------------------+
+
++----------------------------------------------------------------------------------------------------+
+|                                      STEP-BY-STEP INSTRUCTIONS                                     |
++----------------------------------------------------------------------------------------------------+
+
+PART 1: DOWNLOADING & INSTALLING ORACLE VM VIRTUALBOX ON WINDOWS HOST
++------+---------------------------+-----------------------------------------------------------------+
+| STEP | ACTION                    | DESCRIPTION & PARAMETERS                                        |
++------+---------------------------+-----------------------------------------------------------------+
+| 01   | Navigate to Portal        | Open browser -> https://www.virtualbox.org/wiki/Downloads       |
+| 02   | Select Download Package   | Click on the primary 'Download VirtualBox' button               |
+| 03   | Download Windows Binary   | Click on 'Windows hosts' link under platform packages           |
+| 04   | Launch Installer          | Open downloaded file: VirtualBox-7.0.14-Win.exe                 |
+| 05   | Welcome Wizard            | Click 'Next' on the initial Setup Welcome screen                |
+| 06   | Custom Setup Path         | Choose Destination Path (Default: C:\Program Files\Oracle\...)  |
+| 07   | Select Features           | Retain Core App, USB Support, Networking, Python bindings       |
+| 08   | Network Interface Warning | Accept network interruption prompt by clicking 'Yes'            |
+| 09   | Confirm Installation      | Click 'Install' to begin copying files and configuring drivers   |
+| 10   | Complete Setup            | Click 'Finish' with 'Start Oracle VM VirtualBox' checked        |
++------+---------------------------+-----------------------------------------------------------------+
+
+PART 2: CREATING & CONFIGURING VIRTUAL MACHINE (GUEST OS)
++------+---------------------------+-----------------------------------------------------------------+
+| STEP | CONFIGURATION ITEM        | PARAMETERS / VALUE ASSIGNED                                     |
++------+---------------------------+-----------------------------------------------------------------+
+| 11   | VM Name & OS Type         | Name: Windows 98SE | Type: Microsoft Windows | Version: Win 98  |
+| 12   | ISO Image Path            | Select downloaded ISO: Windows 98 Second Edition.iso            |
+| 13   | Memory (RAM) Allocation   | Base Memory: 512 MB (or recommended memory for chosen OS)       |
+| 14   | Processors (vCPU)         | Processors: 1 CPU                                               |
+| 15   | Virtual Hard Disk Size    | Select 'Create a Virtual Hard Disk Now' -> Size: 2.00 GB        |
+| 16   | Start Virtual Machine     | Select VM from left pane and click 'Start' (Green Arrow)        |
+| 17   | Complete Guest OS Install | Follow wizard: format virtual drive, install files, restart VM  |
++------+---------------------------+-----------------------------------------------------------------+
